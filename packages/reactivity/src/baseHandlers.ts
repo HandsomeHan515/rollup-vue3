@@ -1,8 +1,8 @@
 // 仅读的，set会报异常
 // 深度的
 
-import { extend, isObject } from "@vue/shared"
-import { reactive, readonly } from "./reactive"
+import { extend, isObject } from '@vue/shared'
+import { reactive, readonly } from './reactive'
 
 const get = createGetter()
 const shallowGet = createGetter(false, true)
@@ -36,8 +36,8 @@ export const shallowReadonlyHandlers = extend({
     get: shallowReadonlyGet
 }, readonlyObj)
 
-function createGetter(isReadonly: boolean = false, shallow: boolean = false) { // 拦截获取
-    return function get(target, key, receiver) {
+function createGetter (isReadonly: boolean = false, shallow: boolean = false) { // 拦截获取
+    return function get (target, key, receiver) {
         const res = Reflect.get(target, key, receiver) // target[key]
         if (!isReadonly) {
             // 收集依赖，数据变化后更新对应的视图
@@ -55,8 +55,8 @@ function createGetter(isReadonly: boolean = false, shallow: boolean = false) { /
     }
 }
 
-function createSetter(shallow: boolean = false) { // 拦截设置
-    return function set(target, key, value, receiver) {
+function createSetter (shallow: boolean = false) { // 拦截设置
+    return function set (target, key, value, receiver) {
         const result = Reflect.set(target, key, value, receiver) // target[key] = value
 
         return result

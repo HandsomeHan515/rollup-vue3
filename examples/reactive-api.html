@@ -14,10 +14,10 @@
         const { reactive, readonly, shallowReactive, shallowReadonly } = VueReactivity
 
         const state = reactive({ name: 'han', obj: { a: 1, b: 2 } })
-        state.name = 111
+        state.name = 'handsome'
         state.obj.a = 111
         console.log(state);
-
+        console.log(state.obj)
     </script>
 </body>
 

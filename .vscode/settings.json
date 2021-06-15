@@ -1,0 +1,6 @@
+{
+    "editor.formatOnSave": false, // 不启用 vscode 的格式化
+    "editor.codeActionsOnSave": { // 文件保存启用 eslint 自动修复
+        "source.fixAll.eslint": true,
+    },
+}

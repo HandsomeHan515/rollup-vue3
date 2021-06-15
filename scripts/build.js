@@ -2,13 +2,8 @@ const fs = require('fs')
 const execa = require('execa')
 
 
-const targets = fs.readdirSync("packages").filter(f => {
-    if (!fs.statSync(`packages/${f}`).isDirectory()) {
-        return false
-    } else {
-        return true
-    }
-})
+const targets = fs.readdirSync('packages').filter(f => fs.statSync(`packages/${f}`).isDirectory())
+console.log('targets', targets);
 
 
 async function build (target) {

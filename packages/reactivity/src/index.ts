@@ -1,4 +1,3 @@
-debugger
 export {
     reactive,
     readonly,

@@ -1,4 +1,4 @@
-import { isObject } from "@vue/shared"
+import { isObject } from '@vue/shared'
 import {
     mutableHandlers,
     shallowReactiveHandlers,
@@ -7,21 +7,21 @@ import {
 } from './baseHandlers'
 
 
-export function reactive(target) {
+export function reactive (target) {
     return createReactiveObject(target, false, mutableHandlers)
 }
 
-export function shallowReactive(target) {
+export function shallowReactive (target) {
     return createReactiveObject(target, false, shallowReactiveHandlers)
 
 }
 
-export function readonly(target) {
+export function readonly (target) {
     return createReactiveObject(target, true, readonlyHandlers)
 
 }
 
-export function shallowReadonly(target) {
+export function shallowReadonly (target) {
     return createReactiveObject(target, true, shallowReadonlyHandlers)
 }
 
@@ -29,7 +29,7 @@ const reactiveMap = new WeakMap()
 const readonlyMap = new WeakMap()
 
 // 是不是仅读的 readonly 需不需要深度遍历 shallow，柯里化
-export function createReactiveObject(target, isReadonly, baseHandlers) {
+export function createReactiveObject (target, isReadonly, baseHandlers) {
     if (!isObject) {
         return target
     }

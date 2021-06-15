@@ -3,12 +3,11 @@ import json from '@rollup/plugin-json'
 import ts from 'rollup-plugin-typescript2'
 import resolvePlugin from '@rollup/plugin-node-resolve'
 
+console.log('TARGET', process.env.TARGET);
+
 const packagesDir = path.resolve(__dirname, 'packages')
-
 const packageDir = path.resolve(packagesDir, process.env.TARGET)
-
 const resolve = p => path.resolve(packageDir, p)
-
 const pkg = require(resolve('package.json'))
 const name = path.basename(packageDir)
 
@@ -34,7 +33,7 @@ function createConfig (format, output) {
     output.sourcemap = true
     // 生成rollup配置
     return {
-        input: resolve(`src/index.ts`),
+        input: resolve('src/index.ts'),
         output,
         plugins: [
             json(),
