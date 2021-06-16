@@ -2,6 +2,8 @@
 // 深度的
 
 import { extend, isObject } from '@vue/shared'
+import { track } from './effect'
+import { TrackOpTypes } from './operations'
 import { reactive, readonly } from './reactive'
 
 const get = createGetter()
@@ -41,13 +43,15 @@ function createGetter (isReadonly: boolean = false, shallow: boolean = false) { 
         const res = Reflect.get(target, key, receiver) // target[key]
         if (!isReadonly) {
             // 收集依赖，数据变化后更新对应的视图
+            console.log('执行effect时取值，收集effect');
+            track(target, TrackOpTypes.GET, key)
         }
 
         if (shallow) {
             return res
         }
 
-        if (isObject) { // 当取值时会进行代理，懒代理
+        if (isObject(res)) { // 当取值时会进行代理，懒代理
             return isReadonly ? readonly(res) : reactive(res)
         }
 
@@ -58,7 +62,7 @@ function createGetter (isReadonly: boolean = false, shallow: boolean = false) { 
 function createSetter (shallow: boolean = false) { // 拦截设置
     return function set (target, key, value, receiver) {
         const result = Reflect.set(target, key, value, receiver) // target[key] = value
-
+        // 数据更新时，通知对应属性的 effect 重新执行
         return result
     }
 }
