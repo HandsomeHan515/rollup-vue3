@@ -12,21 +12,20 @@
     <script>
         const { effect, reactive } = VueReactivity
 
-        const state = reactive({ name: 'han', age: 10 })
+        const state = reactive({ name: 'han', age: 10, list: [1,2,3] })
         effect(() => {
-            app.innerHTML = `我是${state.name}，我今年${state.age}岁了`
+            // app.innerHTML = `我是${state.name}，我今年${state.age}岁了`
+            console.log('render~~');
+            // app.innerHTML = state.list[2] + state.list.length
+            app.innerHTML = state.list
         })
-
-        effect(() => {
-            app.innerHTML = `我是${state.name}，我今年${state.age}岁了`
-        })
-
-        effect(() => {
-            app.innerHTML = `我是${state.name}，我今年${state.age}岁了`
-        })
-
+        
         setTimeout(() => {
-                state.name = 'handsomehan'
+                // state.name = 'handsomehan'
+                // state.other = {}
+                // state.list.push(4)
+                // state.list.length = 1
+                state.list[100] = 100
         }, 1000);
     </script>
 </body>
