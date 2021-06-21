@@ -16,3 +16,6 @@ const hasOwnProperty = Object.prototype.hasOwnProperty
 export const hasOwn = (target, key) => hasOwnProperty.call(target, key) 
 
 export const hasChanged= (oldValue, value ) => oldValue !== value
+
+const onRE = /^on[^a-z]/
+export const isOn = (key: string) => onRE.test(key)

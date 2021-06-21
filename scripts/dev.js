@@ -1,6 +1,6 @@
 const execa = require('execa')
 
-const target = 'reactivity'
+const target = 'runtime-dom'
 
 async function build (target) {
     await execa('rollup', ['-cw', '--environment', `TARGET:${target}`], { stdio: 'inherit' })
